@@ -1,0 +1,7 @@
+{
+  "framework": "vite",
+  "installCommand": "cd forex-ai-intelligence && npm install",
+  "buildCommand": "cd forex-ai-intelligence && npm run build",
+  "outputDirectory": "forex-ai-intelligence/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+}
