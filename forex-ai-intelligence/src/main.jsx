@@ -5,14 +5,20 @@ import './index.css'
 import App from './App.jsx'
 import { ErrorBoundary } from './components/ErrorBoundary'
 
-const CLERK_KEY = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
-const hasClerkKey = typeof CLERK_KEY === 'string' && CLERK_KEY.trim().length > 0
+const rawClerkKey = import.meta.env.VITE_CLERK_PUBLISHABLE_KEY
+const CLERK_KEY = typeof rawClerkKey === 'string' ? rawClerkKey.trim() : ''
+const hasClerkKey = CLERK_KEY.length > 0
+const hasValidClerkKey = /^pk_(test|live)_/i.test(CLERK_KEY)
 
 if (!hasClerkKey) {
   console.warn('[Auth] VITE_CLERK_PUBLISHABLE_KEY is missing. Clerk auth is disabled.')
+} else if (!hasValidClerkKey) {
+  console.warn(
+    '[Auth] VITE_CLERK_PUBLISHABLE_KEY does not look like a Clerk publishable key. Clerk auth is disabled.'
+  )
 }
 
-const appTree = hasClerkKey ? (
+const appTree = hasValidClerkKey ? (
   <ClerkProvider publishableKey={CLERK_KEY}>
     <App enableAuth />
   </ClerkProvider>
