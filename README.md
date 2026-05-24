@@ -154,6 +154,7 @@ Create the `.env` file for API keys:
 # .env
 VITE_ANTHROPIC_API_KEY=your_claude_api_key_here
 VITE_FX_API_URL=https://api.frankfurter.app
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key_here
 ```
 
 ---
@@ -889,6 +890,7 @@ vercel
 
 # Set environment variables on Vercel
 vercel env add VITE_ANTHROPIC_API_KEY
+vercel env add VITE_CLERK_PUBLISHABLE_KEY
 ```
 
 **`vercel.json` configuration:**
